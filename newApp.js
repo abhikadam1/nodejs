@@ -93,6 +93,10 @@ let server = http.createServer((request, response) => {
         response.writeHead(200);
         response.end(html.replace('{{%content%}}', "You are in contact page "));
 
+    }else if (path.toLocaleLowerCase() == '/features') {
+        response.writeHead(200);
+        response.end(html.replace('{{%content%}}', "You are in contact page "));
+
     } else {
         response.writeHead(404);
         response.end(html.replace('{{%content%}}', "Error 404 : Page not found "));
