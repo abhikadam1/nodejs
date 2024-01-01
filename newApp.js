@@ -85,7 +85,7 @@ let server = http.createServer((request, response) => {
         // response.end(html.replace('{{%content%}}', "You are in product page "));
         // response.end(jsonData);
 
-    } else if (path.toLowerCase() == '/service') {
+    } else if (path.toLowerCase() == '/services') {
         response.writeHead(200);
         response.end(html.replace('{{%content%}}', "You are in service page "));
 
