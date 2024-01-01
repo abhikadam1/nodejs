@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Product List</title>
+  <style>
+    /* Basic styling for the product list */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .product-card p {
+      margin: 8px 0;
+    }
+
+    .product-card strong {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="product-list">
+    <!-- Product cards -->
+    <div class="product-card">
+      <h2>{{%Name%}}</h2>
+      <p><strong>Brand:</strong>{{%Brand%}}</p>
+      <p><strong>Price:</strong>{{%Price%}}</p>
+      <p><strong>Description:</strong>{{%Description%}}</p>
+      <p><strong>Specifications:</strong><br>{{%Specifications%}}</p>
+      <p><strong>Availability:</strong>{{%Availability%}}</p>
+      <p><strong>Colors Available:</strong>{{%Colors%}}</p>
+    </div>
+    <!-- Add other product cards similarly -->
+  </div>
+</body>
+
+</html>

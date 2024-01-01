@@ -1,0 +1,186 @@
+[
+    {
+        "id": 1,
+        "name": "Smartphone",
+        "brand": "ExampleBrand",
+        "price": 499.99,
+        "description": "A high-quality smartphone with advanced features.",
+        "specs": {
+            "screenSize": "6.5 inches",
+            "camera": "12 MP rear, 8 MP front",
+            "storage": "128 GB",
+            "RAM": "6 GB",
+            "OS": "Android 11"
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Black",
+            "Silver",
+            "Blue"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Laptop",
+        "brand": "TechMaster",
+        "price": 1099.99,
+        "description": "Powerful laptop for professional use.",
+        "specs": {
+            "screenSize": "15.6 inches",
+            "processor": "Intel Core i7",
+            "RAM": "16 GB",
+            "storage": "512 GB SSD",
+            "OS": "Windows 10"
+        },
+        "availability": false,
+        "colorsAvailable": [
+            "Silver"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Wireless Headphones",
+        "brand": "SoundWave",
+        "price": 129.99,
+        "description": "Over-ear wireless headphones with noise cancellation.",
+        "specs": {
+            "type": "Over-ear",
+            "batteryLife": "Up to 30 hours",
+            "color": "Black"
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Black",
+            "White"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Smart Watch",
+        "brand": "TechGadget",
+        "price": 199.99,
+        "description": "Smartwatch with health and fitness tracking.",
+        "specs": {
+            "display": "1.4 inches",
+            "sensors": [
+                "Heart rate",
+                "GPS",
+                "Accelerometer"
+            ],
+            "batteryLife": "Up to 7 days"
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Black",
+            "Silver",
+            "Rose Gold"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Gaming Console",
+        "brand": "GameMaster",
+        "price": 399.99,
+        "description": "High-performance gaming console for immersive gaming experiences.",
+        "specs": {
+            "storage": "1 TB",
+            "resolution": "4K",
+            "includedGames": [
+                "Game A",
+                "Game B",
+                "Game C"
+            ]
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Black"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Camera",
+        "brand": "SnapShot",
+        "price": 699.99,
+        "description": "Professional DSLR camera for photography enthusiasts.",
+        "specs": {
+            "type": "DSLR",
+            "megapixels": "24 MP",
+            "lensType": "Interchangeable",
+            "ISO": "100-25600"
+        },
+        "availability": false,
+        "colorsAvailable": [
+            "Black"
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Wireless Router",
+        "brand": "ConnectNet",
+        "price": 79.99,
+        "description": "Dual-band wireless router for high-speed internet connectivity.",
+        "specs": {
+            "speed": "Up to 1200 Mbps",
+            "security": "WPA3",
+            "ports": "4 Ethernet ports"
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Black"
+        ]
+    },
+    {
+        "id": 8,
+        "name": "External Hard Drive",
+        "brand": "DataVault",
+        "price": 149.99,
+        "description": "Portable external hard drive for data storage.",
+        "specs": {
+            "capacity": "2 TB",
+            "interface": "USB 3.0",
+            "compatibility": "Windows, Mac"
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Black",
+            "Silver"
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Tablet",
+        "brand": "TabTech",
+        "price": 299.99,
+        "description": "Compact tablet for entertainment and productivity.",
+        "specs": {
+            "screenSize": "10.2 inches",
+            "processor": "Octa-core",
+            "storage": "64 GB",
+            "OS": "Android 10"
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Black",
+            "White",
+            "Blue"
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Portable Bluetooth Speaker",
+        "brand": "SoundBeats",
+        "price": 59.99,
+        "description": "Portable speaker with high-quality sound output.",
+        "specs": {
+            "connectivity": "Bluetooth 5.0",
+            "batteryLife": "Up to 12 hours",
+            "color": "Red"
+        },
+        "availability": true,
+        "colorsAvailable": [
+            "Red",
+            "Black",
+            "Blue"
+        ]
+    }
+]

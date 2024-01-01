@@ -1,1 +1,4 @@
-sample
+Data to be written is sample text reading using readfilesync method  sdsdsgsg. 
+On date of Tue Dec 26 2023 22:36:09 GMT+0530 (India Standard Time)
+
+ Date Created On Wed Dec 27 2023 22:29:54 GMT+0530 (India Standard Time)
