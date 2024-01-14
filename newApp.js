@@ -1,5 +1,5 @@
 // lecture 3 read input
-const readLine = require('readline');
+// const readLine = require('readline');
 // const rl = readLine.createInterface({
 //     input : process.stdin,
 //     output : process.stdout,
@@ -13,6 +13,7 @@ const readLine = require('readline');
 //     console.log("Interface Closed  1234");
 //     process.exit(0);
 // })
+// return 0;
 
 // lecture 4 read nad write to file 
 const fs = require('fs');
@@ -58,8 +59,8 @@ const productHtmlArr = jsonData.map((curr, index, arr) => {
 })
 let count = 1;
 const http = require('http');
-const { json } = require('stream/consumers');
-const { type } = require('os');
+// const { json } = require('stream/consumers');
+// const { type } = require('os');
 let server = http.createServer((request, response) => {
     let path = request.url;
     console.log(path);
