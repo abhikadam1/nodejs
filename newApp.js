@@ -46,43 +46,61 @@ const html = fs.readFileSync('./Template/index.html', 'utf-8');
 const jsonData = JSON.parse(fs.readFileSync('./Template/data/jsonData.json', 'utf-8'));
 console.log(typeof jsonData);
 const product = fs.readFileSync('./Template/product.html', 'utf-8');
-const productHtmlArr = jsonData.map((curr, index, arr) => {
-    let output = product.replace('{{%Brand%}}', curr.brand)
-    output = output.replace('{{%Name%}}', curr.name)
-    output = output.replace('{{%Price%}}', curr.price)
-    output = output.replace('{{%Description%}}', curr.description)
-    output = output.replace('{{%Specifications%}}', Object.entries(curr.specs))
-    output = output.replace('{{%Availability%}}', curr.availability)
-    output = output.replace('{{%Colors%}}', curr.colorsAvailable);
+// const productHtmlArr = jsonData.map((curr, index, arr) => {
+   
+// })
 
-    return output;
-})
 let count = 1;
 const http = require('http');
+const url = require('url');
+const { json } = require('stream/consumers');
+const { log } = require('console');
 // const { json } = require('stream/consumers');
 // const { type } = require('os');
 let server = http.createServer((request, response) => {
-    let path = request.url;
+    // let path = request.url;
+    let queryParam = url.parse(request.url, true);
+    let {query ,pathname : path } = queryParam;
     console.log(path);
     if (path.toLowerCase() == '/home' || path.toLowerCase() == '/') {
         response.writeHead(200, {
             'conntent-Type': "text/html",
             'my-hero': "Hello Node Js"
         });
-        response.end(html.replace('{{%content%}}', product));
+        let productHtmlArr = jsonData.map((prod)=>{
+            return getProductHtml(product,prod);
+        })
+        let productResponse = html.replace('{{%content%}}', productHtmlArr.join(','));
+        response.end(productResponse);
+        // response.end(html.replace('{{%content%}}', product));
 
     } else if (path.toLocaleLowerCase() == '/about') {
         response.writeHead(200);
         response.end(html.replace('{{%content%}}', "You are in about page "));
 
     } else if (path.toLowerCase() == '/product') {
-        response.writeHead(200, {
-            'conntent-Type': "application/json",
-            'my-hero': "Hello Node Js"
-        });
-        let productResponse = html.replace('{{%content%}}', productHtmlArr.join(','));
-        console.log(productResponse);
-        response.end(productResponse);
+        if(!query.id){
+            response.writeHead(200, {
+                'conntent-Type': "application/json",
+                'my-hero': "Hello Node Js"
+            });
+            let productHtmlArr = jsonData.map((prod)=>{
+                return getProductHtml(product,prod);
+            })
+            let productResponse = html.replace('{{%content%}}', productHtmlArr.join(','));
+            response.end(productResponse);
+        }else{
+            let prodData = jsonData[query.id];
+            console.log(prodData, "ljv");
+            response.writeHead(200, {
+                'conntent-Type': "application/json",
+                'my-hero': "Hello Node Js"
+            });
+            let productHtmlArr = getProductHtml(product,prodData)
+            let productResponse = html.replace('{{%content%}}', productHtmlArr);
+            response.end(productResponse);
+        }
+        
         // response.end(html.replace('{{%content%}}', "You are in product page "));
         // response.end(jsonData);
 

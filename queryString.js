@@ -5,12 +5,14 @@ const url = require('url');
 const { log } = require('console');
 
 const server = http.createServer((req, res)=>{
-    let path = req.url;
-    let queryParam = url.parse(path, true);
+    // let path = req.url;
+    let queryParam = url.parse(req.url, true);
+    let {query ,pathname : path } = queryParam;
+    console.log(query, "   sfg ", path);
     console.log(queryParam, ' queryParam ');
     res.end("Now do your work and let me do my work, understand!")
 })
 
-server.listen(8081, "127.0.0.2", ()=>{
-    console.log('ser has started do your work ');
+server.listen(8081, "127.0.0.1", ()=>{
+    console.log('server has started do your work ');
 })
