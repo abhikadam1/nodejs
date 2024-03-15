@@ -50,6 +50,8 @@ const product = fs.readFileSync('./Template/product.html', 'utf-8');
    
 // })
 
+const getProductHtml = require('./Modules/customModule.js');
+
 let count = 1;
 const http = require('http');
 const url = require('url');
@@ -122,4 +124,5 @@ let server = http.createServer((request, response) => {
 
 server.listen(8080, '127.0.0.1', () => {
     console.log('server has started ');
+    console.log('server lrlg poss r jh opshnhas started ');
 })

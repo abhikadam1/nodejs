@@ -13,16 +13,26 @@ const { log, error } = require('console');
 // });
 
 //solution 2 : with streams
+// const server = http.createServer((req, res)=>{
+//     let rs=  fs.createReadStream('./files/largeFile.txt')
+//     rs.on('data', (chunkData)=>{
+//         res.write(chunkData);
+//         // res.end();
+//     })
+//     rs.on('end', () =>{
+//         res.end();
+//     })
+//     rs.on('error',(error)=>{
+//         console.log(error.message);
+//         res.end(error.message);
+//     })
+// });
+
+//Solution 3 : using pipe method
 const server = http.createServer((req, res)=>{
-    let rs=  fs.createReadStream('./files/largeFile.txt')
-    rs.on('data', (chunkData)=>{
-        res.write(chunkData);
-        res.end();
-    })
-    rs.on('error',(error)=>{
-        console.log(error.message);
-        res.end(error.message);
-    })
+    let rs = fs.createReadStream('./files/largeFile.txt');
+    rs.pipe(res);
+    // pipe method can be uset only on readable stram or readable source.
 });
 
 server.listen(8089,'127.0.0.1', ()=>{
