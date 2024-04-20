@@ -21,6 +21,7 @@ const logger = (req, res, next) =>{
 };
 
 app.use(logger);
+console.log(" New Changes");
 app.use('/vouchers',voucherRouter);
 app.use('/movies',moviesRouter);
 
