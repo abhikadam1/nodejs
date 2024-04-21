@@ -15,7 +15,7 @@ exports.getAllMovies = async(req, res) => {
             }
         })
     }catch(err){
-        res.status(400).json({
+        res.status(404).json({
             status : "Fail",
             message : err.message
         })
@@ -34,7 +34,7 @@ exports.getMovie = async (req, res) => {
             }
         })
     }catch(err){
-        res.status(400).json({
+        res.status(404).json({
             status : "Fail",
             message : err.message
         });
@@ -64,7 +64,7 @@ exports.createMovie = async (req, res) => {
             }
         })
     }catch(err){
-        res.status(400).json({
+        res.status(404).json({
             status : "Fail",
             message : err.message
         })
@@ -83,7 +83,7 @@ exports.updateMovie = async (req, res) => {
             }
         })
     }catch(err){
-        res.status(400).json({
+        res.status(404).json({
             status : "Fail",
             message : err.message
         });
@@ -93,5 +93,19 @@ exports.updateMovie = async (req, res) => {
 exports.updateMovie1 = (req, res) => {
 };
 
-exports.deleteMovie = (req, res) => {
+exports.deleteMovie = async(req, res) => {
+    try{
+        // const movies = await Movie.find({_id: req.params.id});
+        const movies = await Movie.findByIdAndDelete(req.params.id);
+        console.log(movies, ' movies ');
+        res.status(204).json({
+            status : " Sucees",
+            data : null,
+        })
+    }catch(err){
+        res.status(404).json({
+            status : "Fail",
+            message : err.message
+        });
+    }
 }; 

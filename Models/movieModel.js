@@ -3,11 +3,13 @@ const movieSchema = new mongoose.Schema({
     name: {
         type : String,
         required : [true, 'Name field is required'],
-        unique : [true, 'Name field is Unique'],
+        unique : true,
+        trim : true,
     },
     description : {
         type : String,
         default : "New Description" ,
+        trim : true,
     },
     duration : {
         type : Number,
@@ -16,6 +18,14 @@ const movieSchema = new mongoose.Schema({
     rating : {
         type : Number,
         default : 1.0,
+    },
+    actors : {
+        type : [String],
+        required : [true, "Actors is required field"],
+    },
+    creadtedAt : {
+        type : Date,
+        default : Date.now(),
     },
 });
 
