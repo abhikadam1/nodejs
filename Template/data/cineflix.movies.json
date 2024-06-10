@@ -1,0 +1,278 @@
+[{
+  "_id": {
+    "$oid": "661fff527e8fecd131fa4b34"
+  },
+  "name": "Dream Girl",
+  "description": "Dream Girl beautiful moive",
+  "duration": 122,
+  "rating": 4.3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6620006ea030987706b3afad"
+  },
+  "name": "Dream Girl 1",
+  "description": "Dream Girl beautiful moive",
+  "duration": 122,
+  "rating": 4.3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66214cb5fce0565197a1d797"
+  },
+  "name": "Dream Girl 2",
+  "description": "Dream Girl beautiful moive",
+  "duration": 122,
+  "rating": 4.3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66214efd50755808a421079b"
+  },
+  "name": "Dream Girl 3",
+  "description": "Dream Girl beautiful moive",
+  "duration": 122,
+  "rating": 4.3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66214fe550755808a421079e"
+  },
+  "name": "Dream Girl 4",
+  "description": "Dream Girl beautiful moive",
+  "duration": 120,
+  "rating": 4.3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6624d0287b94a271e5d14166"
+  },
+  "name": "Dream Girl 6",
+  "description": "Dream Girl beautiful moive",
+  "duration": 122,
+  "rating": 4.3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6624e4b9737e8070bc612340"
+  },
+  "name": "Dream Girl 7",
+  "description": "Dream Girl beautiful moive",
+  "duration": 122,
+  "rating": 4.3,
+  "Actors": [],
+  "creadtedAt": {
+    "$date": "2024-04-21T09:07:28.966Z"
+  },
+  "__v": 0,
+  "actors": [
+    "Shraddha",
+    "Ranbir"
+  ]
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d70"
+  },
+  "id": 2,
+  "name": "Laptop",
+  "description": "Powerful laptop for professional use.",
+  "brand": "TechMaster",
+  "price": 1099.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d71"
+    }
+  },
+  "colorsAvailable": [
+    "Silver"
+  ],
+  "availability": false,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d76"
+  },
+  "id": 7,
+  "name": "Wireless Router",
+  "description": "Dual-band wireless router for high-speed internet connectivity.",
+  "brand": "ConnectNet",
+  "price": 79.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d77"
+    }
+  },
+  "colorsAvailable": [
+    "Black"
+  ],
+  "availability": true,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d78"
+  },
+  "id": 8,
+  "name": "External Hard Drive",
+  "description": "Portable external hard drive for data storage.",
+  "brand": "DataVault",
+  "price": 149.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d79"
+    }
+  },
+  "colorsAvailable": [
+    "Black",
+    "Silver"
+  ],
+  "availability": true,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d7a"
+  },
+  "id": 9,
+  "name": "Tablet",
+  "description": "Compact tablet for entertainment and productivity.",
+  "brand": "TabTech",
+  "price": 299.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d7b"
+    }
+  },
+  "colorsAvailable": [
+    "Black",
+    "White",
+    "Blue"
+  ],
+  "availability": true,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d7c"
+  },
+  "id": 10,
+  "name": "Portable Bluetooth Speaker",
+  "description": "Portable speaker with high-quality sound output.",
+  "brand": "SoundBeats",
+  "price": 59.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d7d"
+    }
+  },
+  "colorsAvailable": [
+    "Red",
+    "Black",
+    "Blue"
+  ],
+  "availability": true,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d72"
+  },
+  "id": 3,
+  "name": "Wireless Headphones",
+  "description": "Over-ear wireless headphones with noise cancellation.",
+  "brand": "SoundWave",
+  "price": 129.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d73"
+    }
+  },
+  "colorsAvailable": [
+    "Black",
+    "White"
+  ],
+  "availability": true,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d82"
+  },
+  "id": 14,
+  "name": "Smartphone",
+  "description": "A high-quality smartphone with advanced features.",
+  "brand": "ExampleBrand",
+  "price": 499.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d83"
+    }
+  },
+  "colorsAvailable": [
+    "Black",
+    "Silver",
+    "Blue"
+  ],
+  "availability": true,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662be37a23355d6795531d74"
+  },
+  "id": 6,
+  "name": "Camera",
+  "description": "Professional DSLR camera for photography enthusiasts.",
+  "brand": "SnapShot",
+  "price": 699.99,
+  "rating": 1,
+  "specs": {
+    "_id": {
+      "$oid": "662be37a23355d6795531d75"
+    }
+  },
+  "colorsAvailable": [
+    "Black"
+  ],
+  "availability": false,
+  "creadtedAt": {
+    "$date": "2024-04-26T17:25:14.395Z"
+  },
+  "__v": 0
+}]
