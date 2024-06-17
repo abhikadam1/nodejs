@@ -5,32 +5,31 @@ const { query } = require('express');
 exports.paramMiddelware = (req, res, next, value) => {
 };
 
-exports.getAllMovies = async(req, res) => {
-    try{
-        const movies = await Movie.find();
+exports.getAllMovies = async (req, res) => {
+    try {
+        const movies = await Movie.NewmovieSchema.find();
         res.status(201).json({
-            status : " Sucees",
-            length : movies.length,
-            data : {
+            status: " Sucees",
+            length: movies.length,
+            data: {
                 movies
             }
         })
-    }catch(err){
+    } catch (err) {
         res.status(404).json({
-            status : "Fail",
-            message : err.message
+            status: "Fail",
+            message: err.message
         })
     }
 }
 
-
-exports.getAllMoviesByFilter = async(req, res) => {
-    try{
-        console.log(req.query,  " query ");
+exports.getAllMoviesByFilter = async (req, res) => {
+    try {
+        console.log(req.query, " query ");
         let queryStr = JSON.stringify(req.query);
-        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|eq)\b/g, (match)=>{return `$${match}` });
+        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|eq)\b/g, (match) => { return `$${match}` });
         queryStr = JSON.parse(queryStr);
-        const movies = await Movie.find(queryStr);
+        const movies = await Movie.NewmovieSchema.find(queryStr);
 
         // const movies = await Movie.find()
         //                 .where('name')
@@ -41,68 +40,97 @@ exports.getAllMoviesByFilter = async(req, res) => {
         //                 .lt(req.query.id)
 
         res.status(201).json({
-            status : " Sucees",
-            length : movies.length,
-            data : {
+            status: " Sucees",
+            length: movies.length,
+            data: {
                 movies
             }
         })
-    }catch(err){
+    } catch (err) {
         res.status(404).json({
-            status : "Fail",
-            message : err.message
+            status: "Fail",
+            message: err.message
         })
     }
 }
 
-exports.getAllMoviesSorted = async(req, res) => {
-    try{
-        let queryStr = JSON.stringify(req.query);
-        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|eq)\b/g, (match)=>{return `$${match}` });
+exports.getAllMoviesSorted = async (req, res) => {
+    try {
+        let movieModelFields = Movie.movieSchema101.obj;
+        let queryObj = { ...req.query }
+        let queryObjFields = Object.keys(queryObj);
+        queryObjFields.forEach((field) => {
+            // if (!movieModelFields[field]) {
+            //     delete queryObj[field];
+            // }
+            movieModelFields[field] ? null : delete queryObj[field];
+        })
+        let queryStr = JSON.stringify(queryObj);
+        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|eq)\b/g, (match) => { return `$${match}` });
         queryStr = JSON.parse(queryStr);
-        console.log(queryStr, " oijohj ");
-        let resultQueryObj = Movie.find(queryStr);
+        let resultQueryObj = Movie.NewmovieSchema.find(queryStr);
+
+        console.log(req.query, " req.query ");
         //Sort data
-        if(req.query.sort){
+        if (req.query.sort) {
             let sortQuery = req.query.sort.split(',').join(' ');
             resultQueryObj = resultQueryObj.sort(sortQuery);
-            console.log(resultQueryObj,'');
-        }else{
+            console.log(resultQueryObj, 'resultQueryObj');
+        } else {
             resultQueryObj = resultQueryObj.sort('createdAt');
         }
+        //Select fields
+        if (req.query.fields) {
+            let selectFields = req.query.fields.split(',').join(' ');
+            resultQueryObj = resultQueryObj.select(selectFields);
+            console.log(resultQueryObj, 'resultQueryObj');
+        } else {
+            resultQueryObj = resultQueryObj.select('-__v');
+        }
+
+        //Pagination and limit
+        let page = req.query.page || 1;
+        let limit = req.query.limit || 10;
+        let skip = (page-1) * limit;
+        resultQueryObj = resultQueryObj.skip(skip).limit(limit);
         
-        const movies = await resultQueryObj; 
+        if (req.query.page) {
+            const numMovies = await Movie.NewmovieSchema.countDocuments();
+            if (skip >= numMovies) throw new Error('This page does not exist');
+        } 
+        
+        const movies = await resultQueryObj;
 
         res.status(201).json({
-            status : " Sucees",
-            length : movies.length,
-            data : {
+            status: " Sucees",
+            length: movies.length,
+            data: {
                 movies
             }
         })
-    }catch(err){
+    } catch (err) {
         res.status(404).json({
-            status : "Fail",
-            message : err.message
+            status: "Fail",
+            message: err.message
         })
     }
 }
 
 exports.getMovie = async (req, res) => {
-    try{
+    try {
         // const movies = await Movie.findById(req.params.id);
-        const movies = await Movie.find({_id: req.params.id});
+        const movies = await Movie.NewmovieSchema.find({ _id: req.params.id });
         res.status(201).json({
-            status : " Sucees",
-            length : movies.length,
-            data : {
+            status: " Sucees",
+            length: movies.length,
+            data: {
                 movies
             }
         })
-    }catch(err){
+    } catch (err) {
         res.status(404).json({
-            status : "Fail",
-            message : err.message
+            status: "Fail",
+            message: err.message
         });
     }
 };
@@ -121,37 +149,37 @@ exports.createMovie = async (req, res) => {
     //     console.log(err, " error occured");
     // });
 
-    try{
-        const movie = await Movie.create(req.body);
+    try {
+        const movie = await Movie.NewmovieSchema.create(req.body);
         res.status(201).json({
-            status : " Sucees",
-            data : {
+            status: " Sucees",
+            data: {
                 movie
             }
         })
-    }catch(err){
+    } catch (err) {
         res.status(404).json({
-            status : "Fail",
-            message : err.message
+            status: "Fail",
+            message: err.message
         })
     }
 };
 
 exports.updateMovie = async (req, res) => {
-    try{
+    try {
         // const movies = await Movie.find({_id: req.params.id});
-        const movies = await Movie.findByIdAndUpdate(req.params.id, req.body, {new : true, runValidators : true});
+        const movies = await Movie.NewmovieSchema.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         res.status(201).json({
-            status : " Sucees",
-            length : movies.length,
-            data : {
+            status: " Sucees",
+            length: movies.length,
+            data: {
                 movies
             }
         })
-    }catch(err){
+    } catch (err) {
         res.status(404).json({
-            status : "Fail",
-            message : err.message
+            status: "Fail",
+            message: err.message
         });
     }
 }
@@ -159,19 +187,19 @@ exports.updateMovie = async (req, res) => {
 exports.updateMovie1 = (req, res) => {
 };
 
-exports.deleteMovie = async(req, res) => {
-    try{
+exports.deleteMovie = async (req, res) => {
+    try {
         // const movies = await Movie.find({_id: req.params.id});
-        const movies = await Movie.findByIdAndDelete(req.params.id);
+        const movies = await Movie.NewmovieSchema.findByIdAndDelete(req.params.id);
         console.log(movies, ' movies ');
         res.status(204).json({
-            status : " Sucees",
-            data : null,
+            status: " Sucees",
+            data: null,
         })
-    }catch(err){
+    } catch (err) {
         res.status(404).json({
-            status : "Fail",
-            message : err.message
+            status: "Fail",
+            message: err.message
         });
     }
 }; 

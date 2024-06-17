@@ -6,8 +6,8 @@ const movieController = require('./../Controller/moviesController');
 console.log( " ojsdg ");
 movieRouter.route('/')
     // .get(movieController.getAllMovies)
-    .get(movieController.getAllMoviesByFilter)
-    // .get(movieController.getAllMoviesSorted)
+    // .get(movieController.getAllMoviesByFilter)
+    .get(movieController.getAllMoviesSorted)
     .post(movieController.createMovie);
 
 movieRouter.route('/:id')
