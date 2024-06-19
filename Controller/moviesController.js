@@ -1,10 +1,16 @@
 const { status } = require('express/lib/response');
 const Movie = require('./../Models/movieModel');
+const ApiFeatures = require('./../Utils/ApiFeatures');
 const { query } = require('express');
 
 exports.paramMiddelware = (req, res, next, value) => {
 };
-
+exports.getHighestRatedMovies = (req, res, next) => {
+    console.log(' getHighestRatedMovies ');
+    req.query.sort = '-rating';
+    req.query.limit = '5';
+    next();
+};
 exports.getAllMovies = async (req, res) => {
     try {
         const movies = await Movie.NewmovieSchema.find();
@@ -54,15 +60,77 @@ exports.getAllMoviesByFilter = async (req, res) => {
     }
 }
 
+exports.getAllMoviesSortedByClass = async (req, res) => {
+    try {
+        const features = new ApiFeatures(Movie.NewmovieSchema.find(), req.query, Movie.movieSchema101).filter().sort().selectedFields().paginate();
+        const movies = await features.query;
+       
+        // let movieModelFields = Movie.movieSchema101.obj;
+        // let queryObj = { ...req.query }
+        // let queryObjFields = Object.keys(queryObj);
+        // queryObjFields.forEach((field) => {
+        //     movieModelFields[field] ? null : delete queryObj[field];
+        // })
+        // let queryStr = JSON.stringify(queryObj);
+        // queryStr = queryStr.replace(/\b(gte|gt|lt|lte|eq)\b/g, (match) => { return `$${match}` });
+        // queryStr = JSON.parse(queryStr);
+        // let resultQueryObj = Movie.NewmovieSchema.find(queryStr);
+
+        // console.log(req.query, " req.query ");
+        // //Sort data
+        // if (req.query.sort) {
+        //     let sortQuery = req.query.sort.split(',').join(' ');
+        //     resultQueryObj = resultQueryObj.sort(sortQuery);
+        //     console.log(resultQueryObj, 'resultQueryObj');
+        // } else {
+        //     resultQueryObj = resultQueryObj.sort('createdAt');
+        // }
+        // //Select fields
+        // if (req.query.fields) {
+        //     let selectFields = req.query.fields.split(',').join(' ');
+        //     resultQueryObj = resultQueryObj.select(selectFields);
+        //     console.log(resultQueryObj, 'resultQueryObj');
+        // } else {
+        //     resultQueryObj = resultQueryObj.select('-__v');
+        // }
+
+        // //Pagination and limit
+        // let page = req.query.page || 1;
+        // let limit = req.query.limit || 10;
+        // let skip = (page-1) * limit;
+        // resultQueryObj = resultQueryObj.skip(skip).limit(limit);
+        
+        // if (req.query.page) {
+        //     const numMovies = await Movie.NewmovieSchema.countDocuments();
+        //     if (skip >= numMovies) throw new Error('This page does not exist');
+        // } 
+
+        // const movies = await resultQueryObj;
+
+        res.status(201).json({
+            status: " Sucees",
+            length: movies.length,
+            data: {
+                movies
+            }
+        })
+    } catch (err) {
+        res.status(404).json({
+            status: "Fail",
+            message: err.message
+        })
+    }
+}
+
 exports.getAllMoviesSorted = async (req, res) => {
     try {
+        // const features = new ApiFeatures(Movie.NewmovieSchema.find(), req.query, Movie.movieSchema101).filter().sort().selectedFields().paginate();
+        // const movies = await features.query;
+       
         let movieModelFields = Movie.movieSchema101.obj;
         let queryObj = { ...req.query }
         let queryObjFields = Object.keys(queryObj);
         queryObjFields.forEach((field) => {
-            // if (!movieModelFields[field]) {
-            //     delete queryObj[field];
-            // }
             movieModelFields[field] ? null : delete queryObj[field];
         })
         let queryStr = JSON.stringify(queryObj);
@@ -98,7 +166,7 @@ exports.getAllMoviesSorted = async (req, res) => {
             const numMovies = await Movie.NewmovieSchema.countDocuments();
             if (skip >= numMovies) throw new Error('This page does not exist');
         } 
-        
+
         const movies = await resultQueryObj;
 
         res.status(201).json({
