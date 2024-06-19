@@ -3,11 +3,15 @@ const movieRouter = express.Router();
 const movieController = require('./../Controller/moviesController');
 
 // movieRouter.param('id', movieController.paramMiddelware);
-console.log( " ojsdg ");
+movieRouter.route('/highest-rated')
+            // .get(movieController.getHighestRatedMovies, movieController.getAllMoviesSorted);
+            .get(movieController.getHighestRatedMovies, movieController.getAllMoviesSortedByClass);
+
+
 movieRouter.route('/')
     // .get(movieController.getAllMovies)
-    // .get(movieController.getAllMoviesByFilter)
-    .get(movieController.getAllMoviesSorted)
+    .get(movieController.getAllMoviesSortedByClass)
+    // .get(movieController.getAllMoviesSorted)
     .post(movieController.createMovie);
 
 movieRouter.route('/:id')
