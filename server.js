@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 const app = require('./apiCreation');
-console.log(app.get('env'));
+console.log(app.get('env'), " Mode ");
 mongoose.connect(process.env.CONN_STR, {
-    useNewUrlParser: true
+    // useNewUrlParser: true
 }).then((conn) => {
     console.log('DB Connection Successful');
 }).catch((err)=>{
