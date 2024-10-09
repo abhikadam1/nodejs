@@ -13,5 +13,5 @@ mongoose.connect(process.env.CONN_STR, {
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-    console.log("Server has statrted ");
+    console.log(`Server is running on ${port} port`);
 });
