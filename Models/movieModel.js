@@ -54,7 +54,7 @@ const newmovieSchema = new mongoose.Schema({
     },
     price : {
         type : Number,
-        required : [true, 'Name field is required'],
+        required : [true, 'price field is required'],
     },
     rating : {
         type : Number,

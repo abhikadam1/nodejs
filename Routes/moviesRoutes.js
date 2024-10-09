@@ -7,6 +7,12 @@ movieRouter.route('/highest-rated')
             // .get(movieController.getHighestRatedMovies, movieController.getAllMoviesSorted);
             .get(movieController.getHighestRatedMovies, movieController.getAllMoviesSortedByClass);
 
+movieRouter.route('/useUnwindKey')
+.get(movieController.getDataByUnwind);
+
+
+movieRouter.route('/moviesStats')
+    .get(movieController.getMoviesStats);
 
 movieRouter.route('/')
     // .get(movieController.getAllMovies)
