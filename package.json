@@ -2,7 +2,7 @@
   "name": "node-js-course-basic",
   "version": "1.0.0",
   "description": "Node js practice course",
-  "main": "app.js",
+  "main": "server.js",
   "directories": {
     "example": "examples"
   },
