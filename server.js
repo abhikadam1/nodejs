@@ -11,7 +11,8 @@ mongoose.connect(process.env.CONN_STR, {
     console.log("Some Error has occured");
 });
 
+const hostname = '127.0.0.1';
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-    console.log(`Server is running on ${port} port`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
