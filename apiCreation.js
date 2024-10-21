@@ -2,11 +2,12 @@
 const { count, log } = require('console');
 const myModule = require('./Modules/customModule.js');
 const voucherRouter = require('./Routes/voucherRoutes.js');
-const moviesRouter = require('./Routes/moviesRoutes.js')
+const moviesRouter = require('./Routes/moviesRoutes.js');
 const CustomError = require('./Utils/CustomError.js');
 const globalErrorHandler = require('./Controller/ErrorController.js');
 const { json } = require('body-parser');
 const exp = require('constants');
+const authRouter = require('./Routes/authRoutes.js');
 const express = myModule.express();
 const fs = myModule.fs();
 const url = myModule.url();
@@ -27,6 +28,7 @@ const logger = (req, res, next) => {
 // app.use(logger);
 app.use('/vouchers', voucherRouter);
 app.use('/movies', moviesRouter);
+app.use('/user', authRouter);
 app.all('*', (req, res, next) => {
     // res.status(404).json({
     //     status : 'fail',

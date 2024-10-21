@@ -6,8 +6,8 @@ module.exports = (error, req, res, next) => {
         res.status(error.statusCode).json({
             status: error.status,
             message: message,
-            error: error,
-            stackStrace : error.stack
+            // error: error,
+            // stackStrace : error.stack
         });
     
     }else if (process.env.NODE_ENV === 'production') {
