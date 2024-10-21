@@ -16,5 +16,7 @@ module.exports = (error, req, res, next) => {
             message: message,
         });
     }
+    console.log(" error controller ");
+    
     
 }
