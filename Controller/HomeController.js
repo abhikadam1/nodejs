@@ -70,3 +70,10 @@ exports.analyticsData = asyncErrorHandler(async (req, res, next) => {
     data: entry.visitHistory,
   });
 });
+
+exports.homeView = asyncErrorHandler(async (req, res, next) => {
+ const allUrls = await urlSchema.find({});
+//  console.log(allUrls, " allUrls ");
+ 
+ res.render('home', { allUrls });
+});

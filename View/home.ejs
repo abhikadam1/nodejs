@@ -8,17 +8,39 @@
     <div>
       <h1>URL Shortner</h1>
       <form action="ejs/url" method="post">
-        <input type="text" name="url" id="url" placeholder="Enter your url here">
+        <input
+          type="text"
+          name="url"
+          id="url"
+          placeholder="Enter your url here"
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
     <h1>List of Users</h1>
-    <%if(locals.users) {%>
-    <ul>
-      <% users.forEach(user => { %>
-      <li><%= user.name %></li>
+    <!-- <%if(locals.allUrls) {%> -->
+    <!-- <ul>
+      <% allUrls.forEach(user => { %>
+      <li><%= user.urlName %></li>
       <% }); %>
-    </ul>
-    <% } %>
+    </ul> -->
+    <table>
+      <thead>
+        <th>Url Name</th>
+        <th>Created At</th>
+        <th>Total Clicks</th>
+      </thead>
+      <tbody>
+        <% allUrls.forEach(user => { %>
+        <tr>
+          <td><%= user.urlName %></td>
+          <td style="text-align: center;"><%= new Date(user.createdAt).toDateString()  %></td>
+          <td style="text-align: center;"><%= user.visitHistory.length %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <!-- <% } %> -->
   </body>
 </html>
