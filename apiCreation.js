@@ -3,6 +3,7 @@ const { count, log } = require('console');
 const myModule = require('./Modules/customModule.js');
 const voucherRouter = require('./Routes/voucherRoutes.js');
 const moviesRouter = require('./Routes/moviesRoutes.js');
+const commonRoutes = require('./Routes/commonRoutes.js');
 const CustomError = require('./Utils/CustomError.js');
 const globalErrorHandler = require('./Controller/ErrorController.js');
 const { json } = require('body-parser');
@@ -43,6 +44,10 @@ app.get('/users/ejs', (req, res) => {
 app.use('/vouchers', voucherRouter);
 app.use('/movies', moviesRouter);
 app.use('/user', authRouter);
+app.use('/users', commonRoutes);
+app.use('/url', commonRoutes);
+app.use('/analytics', commonRoutes);
+
 app.all('*', (req, res, next) => {
     // res.status(404).json({
     //     status : 'fail',

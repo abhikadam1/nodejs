@@ -1,15 +1,24 @@
-// home.ejs (View)
+<!--  home.ejs (View) -->
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Users</title>
-</head>
-<body>
-  <h1>List of Users</h1>
-  <ul>
-    <% users.forEach(user => { %>
+  <head>
+    <title>Users</title>
+  </head>
+  <body>
+    <div>
+      <h1>URL Shortner</h1>
+      <form action="ejs/url" method="post">
+        <input type="text" name="url" id="url" placeholder="Enter your url here">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <h1>List of Users</h1>
+    <%if(locals.users) {%>
+    <ul>
+      <% users.forEach(user => { %>
       <li><%= user.name %></li>
-    <% }); %>
-  </ul>
-</body>
+      <% }); %>
+    </ul>
+    <% } %>
+  </body>
 </html>
