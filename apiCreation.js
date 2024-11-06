@@ -25,6 +25,20 @@ const logger = (req, res, next) => {
     next();
 };
 
+app.set('view engine', 'ejs');
+app.set('views', './View');
+
+// Model (Data handling)
+const users = [
+  { id: 1, name: 'John' },
+  { id: 2, name: 'Jane' },
+];
+
+// Routes
+app.get('/users/ejs', (req, res) => {
+  res.render('home', { users });
+});
+
 // app.use(logger);
 app.use('/vouchers', voucherRouter);
 app.use('/movies', moviesRouter);
