@@ -23,8 +23,9 @@ exports.urlShortner = asyncErrorHandler(async (req, res, next) => {
     },
     { new: true }
   );
-
+  const allUrls = await urlSchema.find({});
   if (entry !== null) {
+    return res.render('home', allUrls);
     return res.json({ id: entry.shortUrlId });
   }
   //   const shortUrl = nanoid();
@@ -36,7 +37,7 @@ exports.urlShortner = asyncErrorHandler(async (req, res, next) => {
     visitHistory: [],
   });
 
-//   return res.redirect(url);
+  return res.render('home', allUrls);
   return res.json({ id: shortUrl });
 //   return res.render("home", { shortUrl });
 });

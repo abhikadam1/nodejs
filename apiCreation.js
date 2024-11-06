@@ -18,6 +18,7 @@ const morgan = myModule.morgan();
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -30,17 +31,6 @@ const logger = (req, res, next) => {
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./View'));
-
-// Model (Data handling)
-// const users = [
-//   { id: 1, name: 'John' },
-//   { id: 2, name: 'Jane' },
-// ];
-
-// // Routes
-// app.get('/ejs', (req, res) => {
-//   res.render('home', { users });
-// });
 
 // app.use(logger);
 app.use('/vouchers', voucherRouter);
