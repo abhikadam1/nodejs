@@ -18,7 +18,7 @@ const morgan = myModule.morgan();
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -40,6 +40,7 @@ app.use('/users', commonRoutes);
 app.use('/url', commonRoutes);
 app.use('/analytics', commonRoutes);
 app.use('/ejs', commonRoutes);
+app.use('/url123', commonRoutes);
 
 app.all('*', (req, res, next) => {
     // res.status(404).json({

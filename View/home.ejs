@@ -7,7 +7,7 @@
   <body>
     <div>
       <h1>URL Shortner</h1>
-      <form action="ejs/url" method="post">
+      <form action="/url123" method="post">
         <input type="text" name="url" id="url" placeholder="Enter your url here"/>
         <button type="submit">Submit</button>
       </form>
@@ -25,6 +25,7 @@
         <th>Url Name</th>
         <th>Created At</th>
         <th>Total Clicks</th>
+        <th>Shortner</th>
       </thead>
       <tbody>
         <% allUrls.forEach(user => { %>
@@ -32,6 +33,7 @@
           <td><%= user.urlName %></td>
           <td style="text-align: center;"><%= new Date(user.createdAt).toDateString()  %></td>
           <td style="text-align: center;"><%= user.visitHistory.length %></td>
+          <td style="text-align: center;"><%= user.shortUrlId %></td>
         </tr>
         <% }); %>
       </tbody>
