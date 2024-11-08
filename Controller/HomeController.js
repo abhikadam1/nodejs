@@ -4,13 +4,25 @@ const urlSchema = require("../Models/commonModel");
 const commonModel = require("../Models/commonModel");
 // const customAlphabet = require("nanoid");
 const shortid = require("shortid");
+const { trim } = require("validator");
+const { v4: uuidv4 } = require('uuid');
+const { setId, getUser } = require('../Utils/AuthService')
+
 
 // Define a custom alphabet and length
 // const alphabet = "1234567890abcdef";
 // const nanoid = customAlphabet(alphabet, 10);
 
 exports.urlShortner = asyncErrorHandler(async (req, res, next) => {
-  const { url } = req.body;
+  let { url } = req.body;
+  if (!url) {
+    return res.redirect('/ejs/urlShortner',
+      // {
+      //   message: "Please enter a valid URL",
+      // }
+    );
+  }
+  url = trim(url);
 
   const entry = await urlSchema.findOneAndUpdate(
     { urlName: url },
@@ -25,7 +37,8 @@ exports.urlShortner = asyncErrorHandler(async (req, res, next) => {
   );
   const allUrls = await urlSchema.find({});
   if (entry !== null) {
-    return res.render('home', {allUrls});
+    return res.redirect('/ejs/urlShortner');
+    return res.render('home', { allUrls });
     return res.json({ id: entry.shortUrlId });
   }
   //   const shortUrl = nanoid();
@@ -37,7 +50,8 @@ exports.urlShortner = asyncErrorHandler(async (req, res, next) => {
     visitHistory: [],
   });
 
-  return res.render('home', {allUrls});
+  // return res.render('home', {allUrls});
+  return res.redirect('/ejs/urlShortner');
   return res.json({ id: shortUrl });
 });
 
@@ -72,8 +86,21 @@ exports.analyticsData = asyncErrorHandler(async (req, res, next) => {
 });
 
 exports.homeView = asyncErrorHandler(async (req, res, next) => {
- const allUrls = await urlSchema.find({});
-//  console.log(allUrls, " allUrls ");
- 
- res.render('home', { allUrls });
+  const allUrls = await urlSchema.find({});
+  //  console.log(allUrls, " allUrls ");
+
+  res.render('home', { allUrls });
+});
+
+exports.signup = asyncErrorHandler(async (req, res, next) => {
+  const sessionId = uuidv4();
+  setId(sessionId, 'user1');
+  res.cookie('uid', sessionId);
+
+  res.render('signup');
+});
+exports.signupUser = asyncErrorHandler(async (req, res, next) => {
+  console.log('signup route');
+
+  res.render('signup');
 });
