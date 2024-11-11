@@ -1,9 +1,15 @@
 const {getUser} = require('../Utils/AuthService')
 module.exports = (req, res, next) => {
-    const sessionId = req.cookies('uid');
-    if (!sessionId) res.redirect('/ejs/signup');
+    // console.log(req);
+    
+    const sessionId = req.cookies?.uid;
+    console.log(sessionId);
+    // return
+    if (!sessionId) return res.redirect('/ejs/signup');
     const user = getUser(sessionId);
-    if(!user) res.redirect('/signup');
+    console.log(user, ' user ');
+    
+    if(!user) return res.redirect('/ejs/signup');
 
     res.user = user;
     next();

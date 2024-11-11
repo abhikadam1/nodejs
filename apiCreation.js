@@ -10,7 +10,8 @@ const { json } = require('body-parser');
 const exp = require('constants');
 const authRouter = require('./Routes/authRoutes.js');
 const path = require('path');
-const { cookieParser } = require('cookie-parser');
+const  cookieParser = require('cookie-parser');
+const authMiddleware = require('./Middleware/AuthMiddleware.js')
 
 const express = myModule.express();
 const fs = myModule.fs();
@@ -38,9 +39,10 @@ app.set('views', path.resolve('./View'));
 app.use('/vouchers', voucherRouter);
 app.use('/movies', moviesRouter);
 app.use('/user', authRouter);
-app.use('/users', commonRoutes);
+app.use('/users', authMiddleware, commonRoutes);
 app.use('/analytics', commonRoutes);
 app.use('/ejs', commonRoutes);
+app.use('/signupUser', commonRoutes);
 
 app.all('*', (req, res, next) => {
     // res.status(404).json({
