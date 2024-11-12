@@ -7,6 +7,8 @@ const shortid = require("shortid");
 const { trim } = require("validator");
 const { v4: uuidv4 } = require('uuid');
 const { setId, getUser } = require('../Utils/AuthService')
+const multer  = require('multer');
+const upload = multer({dest : "/uploads"});
 
 
 // Define a custom alphabet and length
@@ -99,8 +101,24 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
 
   res.render('signup');
 });
+
 exports.signupUser = asyncErrorHandler(async (req, res, next) => {
   console.log('signup route');
 
   res.render('signup');
+});
+
+exports.fileView = asyncErrorHandler(async (req, res, next) => {
+  res.render('fileView');
+});
+
+exports.demoFileUpload = asyncErrorHandler(async (req, res, next) => {
+  console.log("demoFileUpload, demoFileUpload ");
+  // upload.single('demoFile');
+  console.log(" changes changes ");
+  
+
+  res.redirect('/ejs/urlShortner');
+  
+  
 });
