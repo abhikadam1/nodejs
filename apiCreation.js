@@ -17,6 +17,7 @@ const multer = require('multer');
 const { redirect } = require('express/lib/response.js');
 const asyncErrorHandler = require('./Utils/asyncErrorHandler.js')
 
+const urlSchema = require("./Models/commonModel");
 const express = myModule.express();
 const fs = myModule.fs();
 const url = myModule.url();
@@ -40,11 +41,16 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve('./View'));
 
 // app.use(logger);
+app.get('/', async(req, res, next) => {
+    const allUrls = await urlSchema.find({});
+    //  console.log(allUrls, " allUrls ");
+  
+    res.render('home', { allUrls });
+});
 app.use('/vouchers', voucherRouter);
 app.use('/movies', moviesRouter);
 app.use('/user', authRouter);
 app.use('/users', authMiddleware, commonRoutes);
-app.use('/analytics', commonRoutes);
 app.use('/ejs', commonRoutes);
 app.use('/signupUser', commonRoutes);
 
