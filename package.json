@@ -7,8 +7,9 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon socketServer.js",
     "start": "nodemon app.js",
+    "socketrun": "nodemon socketServer.js",
     "run": "nodemon app.js"
   },
   "author": "Abhi",
@@ -25,6 +26,7 @@
     "multer": "^1.4.5-lts.1",
     "nanoid": "^5.0.8",
     "shortid": "^2.2.16",
+    "socket.io": "^4.8.1",
     "uuid": "^11.0.2",
     "validator": "^13.12.0"
   },
