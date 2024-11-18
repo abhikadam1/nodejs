@@ -8,12 +8,17 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.json());
 // MySQL Connection
-const db = mysql.createConnection({
-  host: "127.0.0.1",
-  port: 3307,
-  user: "root",
-  password: "",
-  database: "laravel_app_database",
+const db = mysql.createConnection({  
+	host : 'ecovisrkca-rmt-com.cdeky8oy4qrz.ap-south-1.rds.amazonaws.com',
+	user : 'echo_rmt_user',
+	password : 'rmt^1998#ucode',
+	database : 'forensic_audit',
+	// dbdriver : 'mysqli',
+  // host: "127.0.0.1",
+  // port: 3307,
+  // user: "root",
+  // password: "",
+  // database: "laravel_app_database",
 });
 // Connect to MySQL
 db.connect((err) => {
@@ -31,7 +36,7 @@ app.listen(PORT, () => {
 
 // Routes
 app.get("/api/users", (req, res) => {
-  db.query("SELECT * FROM users", (err, results) => {
+  db.query("SELECT * FROM bank_master", (err, results) => {
     if (err) {
       console.error("Error executing query: " + err.stack);
       res.status(500).send("Error fetching users");
